@@ -9,10 +9,17 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 
-# TODO: Add the executable target named 'param_node'
-# 1. Add executable using src/param_node.cpp
-# 2. Add dependencies (ament_target_dependencies) for rclcpp
-# 3. Install the target to the DESTINATION lib/${PROJECT_NAME}
+# Add the executable target named 'param_node'
+add_executable(param_node src/param_node.cpp)
+
+# Add dependencies for rclcpp
+ament_target_dependencies(param_node rclcpp)
+
+# Install the target
+install(TARGETS
+  param_node
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
